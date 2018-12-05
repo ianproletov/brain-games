@@ -1,7 +1,7 @@
 install:
 	npm install
 start:
-	npx babel-node -- src/bin/brain-calc.js
+	npx babel-node -- src/games/brain-calc.js
 publish:
 	npm publish
 lint:
