@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-export const question = () => {
+export const nameQuestion = () => {
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}\n`);
   return userName;
@@ -8,9 +8,48 @@ export const question = () => {
 
 const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
 
-const correct = (answer, number) => {
-  const corAnswer = number % 2 === 0 ? 'yes' : 'no';
-  if (answer === corAnswer) {
+const randomOperator = () => {
+  let res;
+  switch (Math.floor(Math.random() * 3) + 1) {
+    case 1:
+      res = '+';
+      break;
+    case 2:
+      res = '-';
+      break;
+    case 3:
+      res = '*';
+      break;
+    default:
+      return null;
+  }
+  return res;
+};
+
+const operation = (num1, num2, operator) => {
+  let res;
+  switch (operator) {
+    case '*':
+      res = num1 * num2;
+      break;
+    case '-':
+      res = num1 - num2;
+      break;
+    case '+':
+      res = num1 + num2;
+      break;
+    case '%':
+      res = num1 % num2 === 0 ? 'yes' : 'no';
+      break;
+    default:
+      return null;
+  }
+  return res;
+};
+
+const correct = (answer, num1, num2, operator) => {
+  const corAnswer = operation(num1, num2, operator);
+  if (Number(answer) === corAnswer) {
     console.log('Correct!');
     return true;
   }
@@ -20,18 +59,37 @@ const correct = (answer, number) => {
 
 const evenQuestion = () => {
   const questionNumber = randomNumber();
-  const answer = readlineSync.question(`Question: ${questionNumber}\nYour answer: `);
-  return correct(answer, questionNumber);
+  const userAnswer = readlineSync.question(`Question: ${questionNumber}\nYour answer: `);
+  return correct(userAnswer, questionNumber, 2, '%');
 };
 
-export const evenGame = () => {
-  const userName = question();
+const calcQuestion = () => {
+  const firstNum = randomNumber();
+  const secondNum = randomNumber();
+  const operator = randomOperator();
+  const userAnswer = readlineSync.question(`Question: ${firstNum} ${operator} ${secondNum}\nYour answer: `);
+  return correct(userAnswer, firstNum, secondNum, operator);
+};
+
+export const gameEngine = (typeOfGame) => {
+  const userName = nameQuestion();
+  let gameQuestion;
+  switch (typeOfGame) {
+    case 'even':
+      gameQuestion = evenQuestion;
+      break;
+    case 'calc':
+      gameQuestion = calcQuestion;
+      break;
+    default:
+      return null;
+  }
   const iter = (acc) => {
     if (acc === 3) {
       console.log(`Congratiulations, ${userName}!`);
       return null;
     }
-    if (evenQuestion()) {
+    if (gameQuestion()) {
       return iter(acc + 1);
     }
     console.log(`Let's try again, ${userName}!`);
