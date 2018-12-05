@@ -18,20 +18,20 @@ const correct = (answer, number) => {
   return false;
 };
 
-const evalQuestion = () => {
+const evenQuestion = () => {
   const questionNumber = randomNumber();
   const answer = readlineSync.question(`Question: ${questionNumber}\nYour answer: `);
   return correct(answer, questionNumber);
 };
 
-export const evalGame = () => {
+export const evenGame = () => {
   const userName = question();
   const iter = (acc) => {
     if (acc === 3) {
       console.log(`Congratiulations, ${userName}!`);
       return null;
     }
-    if (evalQuestion()) {
+    if (evenQuestion()) {
       return iter(acc + 1);
     }
     console.log(`Let's try again, ${userName}!`);
