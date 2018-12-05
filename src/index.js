@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-export const nameQuestion = () => {
+const nameQuestion = () => {
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}\n`);
   return userName;
@@ -30,13 +30,13 @@ const operation = (num1, num2, operator) => {
   let res;
   switch (operator) {
     case '*':
-      res = num1 * num2;
+      res = String(num1 * num2);
       break;
     case '-':
-      res = num1 - num2;
+      res = String(num1 - num2);
       break;
     case '+':
-      res = num1 + num2;
+      res = String(num1 + num2);
       break;
     case '%':
       res = num1 % num2 === 0 ? 'yes' : 'no';
@@ -49,7 +49,7 @@ const operation = (num1, num2, operator) => {
 
 const correct = (answer, num1, num2, operator) => {
   const corAnswer = operation(num1, num2, operator);
-  if (Number(answer) === corAnswer) {
+  if (answer === corAnswer) {
     console.log('Correct!');
     return true;
   }
@@ -71,14 +71,17 @@ const calcQuestion = () => {
   return correct(userAnswer, firstNum, secondNum, operator);
 };
 
-export const gameEngine = (typeOfGame) => {
+export default (typeOfGame) => {
+  console.log('Welcome to the Brain Games!\n');
   const userName = nameQuestion();
   let gameQuestion;
   switch (typeOfGame) {
     case 'even':
+      console.log('Answer "yes" if number even otherwise answer "no".\n');
       gameQuestion = evenQuestion;
       break;
     case 'calc':
+      console.log('What is the result of the expression?\n');
       gameQuestion = calcQuestion;
       break;
     default:
