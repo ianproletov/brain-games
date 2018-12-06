@@ -1,4 +1,6 @@
 import readlineSync from 'readline-sync';
+import evenQuestion from './games/even';
+import calcQuestion from './games/calc';
 
 const nameQuestion = () => {
   const userName = readlineSync.question('May I have your name? ');
@@ -6,9 +8,9 @@ const nameQuestion = () => {
   return userName;
 };
 
-const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
+export const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
 
-const randomOperator = () => {
+export const randomOperator = () => {
   let res;
   switch (Math.floor(Math.random() * 3) + 1) {
     case 1:
@@ -47,7 +49,7 @@ const operation = (num1, num2, operator) => {
   return res;
 };
 
-const correct = (answer, num1, num2, operator) => {
+export const correct = (answer, num1, num2, operator) => {
   const corAnswer = operation(num1, num2, operator);
   if (answer === corAnswer) {
     console.log('Correct!');
@@ -55,20 +57,6 @@ const correct = (answer, num1, num2, operator) => {
   }
   console.log(`'${answer}' is wrong answer ;(. Correct answer was '${corAnswer}'`);
   return false;
-};
-
-const evenQuestion = () => {
-  const questionNumber = randomNumber();
-  const userAnswer = readlineSync.question(`Question: ${questionNumber}\nYour answer: `);
-  return correct(userAnswer, questionNumber, 2, '%');
-};
-
-const calcQuestion = () => {
-  const firstNum = randomNumber();
-  const secondNum = randomNumber();
-  const operator = randomOperator();
-  const userAnswer = readlineSync.question(`Question: ${firstNum} ${operator} ${secondNum}\nYour answer: `);
-  return correct(userAnswer, firstNum, secondNum, operator);
 };
 
 export default (typeOfGame) => {
