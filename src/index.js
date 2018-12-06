@@ -1,90 +1,30 @@
 import readlineSync from 'readline-sync';
-import evenQuestion from './games/even';
-import calcQuestion from './games/calc';
 
-const nameQuestion = () => {
+export default (firstNum, secondNum, operation, operator, taskStr, taskExpl = '') => {
+  console.log(`Welcome to the Brain Games!\n${taskExpl}`);
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}\n`);
-  return userName;
-};
-
-export const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
-
-export const randomOperator = () => {
-  let res;
-  switch (Math.floor(Math.random() * 3) + 1) {
-    case 1:
-      res = '+';
-      break;
-    case 2:
-      res = '-';
-      break;
-    case 3:
-      res = '*';
-      break;
-    default:
-      return null;
-  }
-  return res;
-};
-
-const operation = (num1, num2, operator) => {
-  let res;
-  switch (operator) {
-    case '*':
-      res = String(num1 * num2);
-      break;
-    case '-':
-      res = String(num1 - num2);
-      break;
-    case '+':
-      res = String(num1 + num2);
-      break;
-    case '%':
-      res = num1 % num2 === 0 ? 'yes' : 'no';
-      break;
-    default:
-      return null;
-  }
-  return res;
-};
-
-export const correct = (answer, num1, num2, operator) => {
-  const corAnswer = operation(num1, num2, operator);
-  if (answer === corAnswer) {
-    console.log('Correct!');
-    return true;
-  }
-  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${corAnswer}'`);
-  return false;
-};
-
-export default (typeOfGame) => {
-  console.log('Welcome to the Brain Games!\n');
-  const userName = nameQuestion();
-  let gameQuestion;
-  switch (typeOfGame) {
-    case 'even':
-      console.log('Answer "yes" if number even otherwise answer "no".\n');
-      gameQuestion = evenQuestion;
-      break;
-    case 'calc':
-      console.log('What is the result of the expression?\n');
-      gameQuestion = calcQuestion;
-      break;
-    default:
-      return null;
-  }
   const iter = (acc) => {
     if (acc === 3) {
       console.log(`Congratiulations, ${userName}!`);
       return null;
     }
-    if (gameQuestion()) {
+    const actualFirst = firstNum();
+    const actualSecond = secondNum();
+    const actualOperator = operator();
+    const actualTaskStr = taskStr(actualFirst, actualSecond, actualOperator);
+    const userAnswer = readlineSync.question(`Question: ${actualTaskStr}\nYour answer: `);
+    const corAnswer = operation(actualFirst, actualSecond, actualOperator);
+    if (userAnswer === corAnswer) {
+      console.log('Correct!');
       return iter(acc + 1);
     }
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${corAnswer}'`);
     console.log(`Let's try again, ${userName}!`);
     return null;
   };
+  if (firstNum === undefined) {
+    return null;
+  }
   return iter(0);
 };

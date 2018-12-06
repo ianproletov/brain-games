@@ -1,8 +1,12 @@
-import readlineSync from 'readline-sync';
-import { correct, randomNumber } from '..';
+import gameEngine from '..';
 
-export default () => {
-  const questionNumber = randomNumber();
-  const userAnswer = readlineSync.question(`Question: ${questionNumber}\nYour answer: `);
-  return correct(userAnswer, questionNumber, 2, '%');
+const questionNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
+const operation = (num1) => {
+  if (num1 % 2 === 0) {
+    return 'yes';
+  }
+  return 'no';
 };
+const taskStr = num => `${num}`;
+const taskExpl = 'Answer "yes" if number even otherwise answer "no".\n';
+export default () => gameEngine(questionNumber, () => {}, operation, () => {}, taskStr, taskExpl);
