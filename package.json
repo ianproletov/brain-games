@@ -1,6 +1,6 @@
 {
   "name": "brain-games-ianproletov",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "my first hexlet project",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
@@ -33,6 +33,7 @@
     "eslint-plugin-import": "^2.14.0"
   },
   "dependencies": {
+    "hexlet-pairs": "^1.0.8",
     "readline-sync": "^1.4.9"
   }
 }

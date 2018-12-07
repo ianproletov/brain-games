@@ -1,4 +1,5 @@
 import gameEngine from '..';
+import { cons, car, cdr } from 'hexlet-pairs';
 
 const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
 
@@ -38,8 +39,19 @@ const operation = (num1, num2, operator) => {
   return res;
 };
 
-const firstNum = () => randomNumber();
-const secondNum = () => randomNumber();
-const taskStr = (num1, num2, operator) => `${num1} ${operator} ${num2}`;
+const gameGeneration = () => {
+  const firstNum = randomNumber();
+  const secondNum = randomNumber();
+  const operator = randomOperator();
+  const taskStr = `${firstNum} ${operator} ${secondNum}`;
+  const corAnswer = operation(firstNum, secondNum, operator);
+  return cons(corAnswer, taskStr);
+};
+
+const gameAnswer = game => car(game);
+
+const gameTask = game => cdr(game);
+
 const taskExpl = 'What is the result of the expression?\n';
-export default () => gameEngine(firstNum, secondNum, operation, randomOperator, taskStr, taskExpl);
+
+export default () => gameEngine(gameGeneration, gameAnswer, gameTask, taskExpl);
