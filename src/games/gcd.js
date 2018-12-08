@@ -10,15 +10,14 @@ const defineCorrectAnswer = (num1, num2) => {
   return nod;
 };
 
-const generateGame = () => {
+const generateGcdStep = () => {
   const firstNum = getRandomNumber(1, 99);
   const secondNum = getRandomNumber(1, 99);
-  const taskStr = `${firstNum} ${secondNum}`;
+  const question = `${firstNum} ${secondNum}`;
   const correctAnswer = defineCorrectAnswer(firstNum, secondNum);
-  return cons(correctAnswer, taskStr);
+  return cons(correctAnswer, question);
 };
-
 
 const taskExplanation = 'Find the greatest common divisor of given numbers.';
 
-export default () => gameEngine(generateGame, taskExplanation);
+export default () => gameEngine(generateGcdStep, taskExplanation);

@@ -2,26 +2,26 @@ import gameEngine from '..';
 import getRandomNumber from '../utils';
 import { cons } from 'hexlet-pairs';
 
-const generateGame = () => {
+const progressionLength = 10;
+
+const generateProgressionStep = () => {
   const firstElement = getRandomNumber(1, 99);
-  let currentElement = firstElement;
-  const hiddenElementPosition = getRandomNumber(1, 10);
+  const hiddenElementPosition = getRandomNumber(0, progressionLength - 1);
   const step = getRandomNumber(1, 10);
-  let taskStr = '';
+  let question = '';
   let correctAnswer;
-  const progressionLength = 10;
-  for (let i = 1; i <= progressionLength; i += 1) {
+  for (let i = 0; i < progressionLength; i += 1) {
+    const currentElement = firstElement + step * i;
     if (i === hiddenElementPosition) {
       correctAnswer = currentElement;
-      taskStr += '.. ';
+      question += '.. ';
     } else {
-      taskStr += `${currentElement} `;
+      question += `${currentElement} `;
     }
-    currentElement = firstElement + step * i;
   }
-  return cons(correctAnswer, taskStr);
+  return cons(correctAnswer, question);
 };
 
 const taskExplanation = 'What number is missing in the progression?';
 
-export default () => gameEngine(generateGame, taskExplanation);
+export default () => gameEngine(generateProgressionStep, taskExplanation);

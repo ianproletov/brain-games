@@ -6,13 +6,14 @@ const isEven = num => num % 2 === 0;
 
 const defineCorrectAnswer = number => (isEven(number) ? 'yes' : 'no');
 
-const generateGame = () => {
+
+const generateEvenStep = () => {
   const num = getRandomNumber(1, 99);
   const corAnswer = defineCorrectAnswer(num);
-  const taskStr = `${num}`;
-  return cons(corAnswer, taskStr);
+  const question = `${num}`;
+  return cons(corAnswer, question);
 };
 
 const taskExplanation = 'Answer "yes" if number even otherwise answer "no".';
 
-export default () => gameEngine(generateGame, taskExplanation);
+export default () => gameEngine(generateEvenStep, taskExplanation);

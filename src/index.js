@@ -1,14 +1,12 @@
 import readlineSync from 'readline-sync';
 import { car, cdr } from 'hexlet-pairs';
 
+const stepsAmount = 3;
+
 const generateGame = (generateGameStep, taskExplanation = '') => {
   console.log(`Welcome to the Brain Games!\n${taskExplanation}\n`);
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}\n`);
-  if (generateGameStep === undefined) {
-    return;
-  }
-  const stepsAmount = 3;
   for (let i = 1; i <= stepsAmount; i += 1) {
     const currentGame = generateGameStep();
     const correctAnswer = String(car(currentGame));
