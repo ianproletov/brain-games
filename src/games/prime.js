@@ -2,19 +2,22 @@ import generateGame from '..';
 import getRandomNumber from '../utils';
 import { cons } from 'hexlet-pairs';
 
-const isPrime = (num) => {
-  for (let i = 2; i <= Math.floor(num / 2); i += 1) {
-    if (num % i === 0) {
-      return 'no';
+const isPrime = (number) => {
+  if (number < 2) {
+    return false;
+  }
+  for (let i = 2; i <= Math.floor(number / 2); i += 1) {
+    if (number % i === 0) {
+      return false;
     }
   }
-  return 'yes';
+  return true;
 };
 
 const generateProgressionStep = () => {
   const num = getRandomNumber(1, 99);
   const question = `${num}`;
-  const correctAnswer = isPrime(num);
+  const correctAnswer = isPrime(num) ? 'yes' : 'no';
   return cons(correctAnswer, question);
 };
 

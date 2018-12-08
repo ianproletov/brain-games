@@ -6,3 +6,4 @@ brain-even demonstration: <a href="https://asciinema.org/a/Qif9MpMUfCtVRQ2BBI8lZ
 brain-calc demonstration: <a href="https://asciinema.org/a/215358" target="_blank"><img src="https://asciinema.org/a/215358.svg" /></a>
 brain-gcd demonstration: <a href="https://asciinema.org/a/215804" target="_blank"><img src="https://asciinema.org/a/215804.svg" /></a>
 brain-progression demonstration: <a href="https://asciinema.org/a/215813" target="_blank"><img src="https://asciinema.org/a/215813.svg" /></a>
+brain-prime demonstration: <a href="https://asciinema.org/a/215926" target="_blank"><img src="https://asciinema.org/a/215926.svg" /></a>

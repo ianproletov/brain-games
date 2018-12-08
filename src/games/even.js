@@ -2,15 +2,12 @@ import generateGame from '..';
 import getRandomNumber from '../utils';
 import { cons } from 'hexlet-pairs';
 
-const isEven = num => num % 2 === 0;
-
-const defineCorrectAnswer = number => (isEven(number) ? 'yes' : 'no');
-
+const isEven = number => number % 2 === 0;
 
 const generateEvenStep = () => {
-  const num = getRandomNumber(1, 99);
-  const correctAnswer = defineCorrectAnswer(num);
-  const question = `${num}`;
+  const number = getRandomNumber(1, 99);
+  const correctAnswer = isEven(number) ? 'yes' : 'no';
+  const question = `${number}`;
   return cons(correctAnswer, question);
 };
 
