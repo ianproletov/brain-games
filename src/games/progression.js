@@ -1,4 +1,4 @@
-import gameEngine from '..';
+import generateGame from '..';
 import getRandomNumber from '../utils';
 import { cons } from 'hexlet-pairs';
 
@@ -24,4 +24,4 @@ const generateProgressionStep = () => {
 
 const taskExplanation = 'What number is missing in the progression?';
 
-export default () => gameEngine(generateProgressionStep, taskExplanation);
+export default () => generateGame(generateProgressionStep, taskExplanation);

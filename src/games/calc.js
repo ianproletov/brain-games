@@ -1,4 +1,4 @@
-import gameEngine from '..';
+import generateGame from '..';
 import getRandomNumber from '../utils';
 import { cons } from 'hexlet-pairs';
 
@@ -28,4 +28,4 @@ const generateCalcStep = () => {
 
 const taskExplanation = 'What is the result of the expression?';
 
-export default () => gameEngine(generateCalcStep, taskExplanation);
+export default () => generateGame(generateCalcStep, taskExplanation);

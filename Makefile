@@ -1,7 +1,7 @@
 install:
 	npm install
-start:
-	npx babel-node -- src/bin/brain-games.js
+prime:
+	npx babel-node -- src/bin/brain-prime.js
 calc:
 	npx babel-node -- src/bin/brain-calc.js
 even:
