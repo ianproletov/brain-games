@@ -1,28 +1,18 @@
 import gameEngine from '..';
-import { cons, car, cdr } from 'hexlet-pairs';
-
-const questionNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
+import getRandomNumber from '../utils';
+import { cons } from 'hexlet-pairs';
 
 const isEven = num => num % 2 === 0;
 
-const operation = (number) => {
-  if (isEven(number)) {
-    return 'yes';
-  }
-  return 'no';
-};
+const defineCorrectAnswer = number => (isEven(number) ? 'yes' : 'no');
 
-const taskExpl = 'Answer "yes" if number even otherwise answer "no".\n';
-
-const gameGeneration = () => {
-  const num = questionNumber();
-  const corAnswer = operation(num);
+const generateGame = () => {
+  const num = getRandomNumber(1, 99);
+  const corAnswer = defineCorrectAnswer(num);
   const taskStr = `${num}`;
   return cons(corAnswer, taskStr);
 };
 
-const gameAnswer = game => car(game);
+const taskExplanation = 'Answer "yes" if number even otherwise answer "no".';
 
-const gameTask = game => cdr(game);
-
-export default () => gameEngine(gameGeneration, gameAnswer, gameTask, taskExpl);
+export default () => gameEngine(generateGame, taskExplanation);

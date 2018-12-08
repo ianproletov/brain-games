@@ -1,57 +1,31 @@
 import gameEngine from '..';
-import { cons, car, cdr } from 'hexlet-pairs';
+import getRandomNumber from '../utils';
+import { cons } from 'hexlet-pairs';
 
-const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
-
-const randomOperator = () => {
-  let res;
-  switch (Math.floor(Math.random() * 3) + 1) {
+const generateGame = () => {
+  const firstNum = getRandomNumber(1, 99);
+  const secondNum = getRandomNumber(1, 99);
+  let currentOperationChar;
+  let operationRes;
+  switch (getRandomNumber(1, 3)) {
     case 1:
-      res = '+';
+      currentOperationChar = '+';
+      operationRes = firstNum + secondNum;
       break;
     case 2:
-      res = '-';
+      currentOperationChar = '-';
+      operationRes = firstNum - secondNum;
       break;
     case 3:
-      res = '*';
+      currentOperationChar = '*';
+      operationRes = firstNum * secondNum;
       break;
     default:
-      return null;
   }
-  return res;
+  const taskStr = `${firstNum} ${currentOperationChar} ${secondNum}`;
+  return cons(operationRes, taskStr);
 };
 
-const operation = (num1, num2, operator) => {
-  let res;
-  switch (operator) {
-    case '*':
-      res = String(num1 * num2);
-      break;
-    case '-':
-      res = String(num1 - num2);
-      break;
-    case '+':
-      res = String(num1 + num2);
-      break;
-    default:
-      return null;
-  }
-  return res;
-};
+const taskExplanation = 'What is the result of the expression?';
 
-const gameGeneration = () => {
-  const firstNum = randomNumber();
-  const secondNum = randomNumber();
-  const operator = randomOperator();
-  const taskStr = `${firstNum} ${operator} ${secondNum}`;
-  const corAnswer = operation(firstNum, secondNum, operator);
-  return cons(corAnswer, taskStr);
-};
-
-const gameAnswer = game => car(game);
-
-const gameTask = game => cdr(game);
-
-const taskExpl = 'What is the result of the expression?\n';
-
-export default () => gameEngine(gameGeneration, gameAnswer, gameTask, taskExpl);
+export default () => gameEngine(generateGame, taskExplanation);

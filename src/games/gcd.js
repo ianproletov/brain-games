@@ -1,28 +1,24 @@
 import gameEngine from '..';
-import { cons, car, cdr } from 'hexlet-pairs';
+import getRandomNumber from '../utils';
+import { cons } from 'hexlet-pairs';
 
-const randomNumber = () => Math.floor(Math.random() * (99 - 1)) + 1;
-
-const operation = (num1, num2) => {
-  let nod = num1 > num2 ? num2 : num1;
+const defineCorrectAnswer = (num1, num2) => {
+  let nod = Math.min(num1, num2);
   while (num1 % nod !== 0 || num2 % nod !== 0) {
     nod -= 1;
   }
-  return String(nod);
+  return nod;
 };
 
-const gameGeneration = () => {
-  const firstNum = randomNumber();
-  const secondNum = randomNumber();
+const generateGame = () => {
+  const firstNum = getRandomNumber(1, 99);
+  const secondNum = getRandomNumber(1, 99);
   const taskStr = `${firstNum} ${secondNum}`;
-  const corAnswer = operation(firstNum, secondNum);
-  return cons(corAnswer, taskStr);
+  const correctAnswer = defineCorrectAnswer(firstNum, secondNum);
+  return cons(correctAnswer, taskStr);
 };
 
-const gameAnswer = game => car(game);
 
-const gameTask = game => cdr(game);
+const taskExplanation = 'Find the greatest common divisor of given numbers.';
 
-const taskExpl = 'Find the greatest common divisor of given numbers.\n';
-
-export default () => gameEngine(gameGeneration, gameAnswer, gameTask, taskExpl);
+export default () => gameEngine(generateGame, taskExplanation);
