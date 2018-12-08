@@ -19,6 +19,9 @@ const gameEngine = (gameGeneration, gameAnswer, gameTask, taskExpl = '') => {
     console.log(`Let's try again, ${userName}!`);
     return null;
   };
+  if (gameGeneration === undefined) {
+    return null;
+  }
   return iter(0);
 };
 
