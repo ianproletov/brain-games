@@ -9,9 +9,9 @@ const generateGame = (generateGameStep, taskExplanation = '') => {
   console.log(`Hello, ${userName}\n`);
   for (let i = 1; i <= stepsAmount; i += 1) {
     const currentGame = generateGameStep();
-    const correctAnswer = String(car(currentGame));
-    const gameTask = String(cdr(currentGame));
-    const userAnswer = readlineSync.question(`Question: ${gameTask}\nYour answer: `);
+    const correctAnswer = car(currentGame);
+    const question = cdr(currentGame);
+    const userAnswer = readlineSync.question(`Question: ${question}\nYour answer: `);
     if (userAnswer === correctAnswer) {
       console.log('Correct!');
     } else {

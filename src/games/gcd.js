@@ -15,7 +15,7 @@ const generateGcdStep = () => {
   const secondNum = getRandomNumber(1, 99);
   const question = `${firstNum} ${secondNum}`;
   const correctAnswer = defineCorrectAnswer(firstNum, secondNum);
-  return cons(correctAnswer, question);
+  return cons(String(correctAnswer), question);
 };
 
 const taskExplanation = 'Find the greatest common divisor of given numbers.';

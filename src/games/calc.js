@@ -23,7 +23,7 @@ const generateCalcStep = () => {
     default:
   }
   const question = `${firstNum} ${currentOperationChar} ${secondNum}`;
-  return cons(operationRes, question);
+  return cons(String(operationRes), question);
 };
 
 const taskExplanation = 'What is the result of the expression?';

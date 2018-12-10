@@ -19,7 +19,7 @@ const generateProgressionStep = () => {
       question += `${currentElement} `;
     }
   }
-  return cons(correctAnswer, question);
+  return cons(String(correctAnswer), question);
 };
 
 const taskExplanation = 'What number is missing in the progression?';
